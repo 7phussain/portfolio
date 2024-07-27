@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+import Services from "./components/Services";
+import Work from "./components/Work";
+import ClientReviews from "./components/ClientReviews";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+const App = () => {
+  useEffect(() => {
+    document.querySelectorAll("a").forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
 
-function App() {
+        const targetId = this.getAttribute("href").substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+    });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="px-[200px] lg:px-[100px] md:px-[50px] sm:px-[30px] xsm:px-[50px] bg-primary pb-9">
+        <Header />
+        <HeroSection />
+        <Services />
+        <Work />
+        <ClientReviews />
+        <Contact />
+      </div>
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
